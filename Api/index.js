@@ -53,7 +53,7 @@ app.post('/register', async (req, res) => {
      res.json({newuser : userDoc})
   }
   catch (err) {
-    res.status(422).json(err)
+    res.json({msg:err.msg})
   }
 });
 
@@ -80,8 +80,8 @@ app.post('/login' ,async(req,res)=>{
     }
   
   }
-  catch(e){
-    res.status(500).json(e)
+  catch(err){
+    res.json({msg:err.msg})
   }
   
 })
@@ -89,26 +89,39 @@ app.post('/login' ,async(req,res)=>{
 //profile
 
 app.get('/profile', (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.cookies;  //reterive token from cookies
   if (token) {
     jwt.verify(token, jwtSecret, {}, async (err, userdata) => {
       if (err) 
       return res.json({err:"invalid"})
 
-      let {name,email,_id} = await User.findById(userdata.id)
+      const {name,email,_id} = await User.findById(userdata.id)
      
-        res.json(name,email,_id)
+        res.json({name,email,_id})
+    
         
       
     });
+  }else{
+    res.json(null)
   }
 });
 
 
+///logout////
 
+app.post('/logout',(req,res)=>{
+  try{
+    res.cookie('token' ,'').json(true)      // way to make token empty 
+  }
+  catch(err){
+    res.json({msg:err.msg})
+  }
+})
 
 
 app.listen(4000, () => {
+  
   console.log('Server s running on port 4000');
 });
 

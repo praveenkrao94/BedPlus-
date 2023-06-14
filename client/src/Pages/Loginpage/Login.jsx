@@ -29,7 +29,7 @@ function LoginPage() {
   }
 
 if(redirect){
-  return <Navigate to={'/'}/>
+  return <Navigate to={'/'}/>    /// this redirect to index page after login 
 }
   return (
     <div className='mt-4 grow flex items-center justify-around'>
