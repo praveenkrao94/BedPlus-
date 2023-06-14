@@ -19,6 +19,7 @@ function LoginPage() {
         password
       })
       setUser(res.data)
+      console.log(res.data)
       alert("login Successfull")
       setRedirect(true)
     }

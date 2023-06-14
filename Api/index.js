@@ -88,18 +88,22 @@ app.post('/login' ,async(req,res)=>{
 
 //profile
 
-app.get('/profile', (req,res)=>{
-  const {token} = req.cookies;
-  if(token){
-      jwt.verify(token,jwtSecret , {} , (err, user)=>{
-        if(err) throw err
-        res.json(user)
-      })
-  }else{
-    res.json(null)
+app.get('/profile', (req, res) => {
+  const { token } = req.cookies;
+  if (token) {
+    jwt.verify(token, jwtSecret, {}, async (err, userdata) => {
+      if (err) 
+      return res.json({err:"invalid"})
+
+      let {name,email,_id} = await User.findById(userdata.id)
+     
+        res.json(name,email,_id)
+        
+      
+    });
   }
-  
-})
+});
+
 
 
 
