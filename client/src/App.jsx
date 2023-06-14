@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import { Routes , Route } from 'react-router-dom'
 import IndexPage from './Pages/IndexPage'
@@ -6,10 +6,16 @@ import IndexPage from './Pages/IndexPage'
 import LoginPage from './Pages/Loginpage/Login'
 import Layout from './Layout/Layout'
 import Register from './Pages/RegisterPage/Register'
+import axios from 'axios'
+import { UserContextProvider } from './UserContext'
 
+axios.defaults.baseURL ='http://localhost:4000'
+axios.defaults.withCredentials =true 
 
 function App() {
+
   return (
+    <UserContextProvider>
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<IndexPage/>}/>
@@ -17,6 +23,7 @@ function App() {
         <Route  path='/register' element={<Register/>} />
       </Route>
     </Routes>
+    </UserContextProvider>
   
   )
 }
