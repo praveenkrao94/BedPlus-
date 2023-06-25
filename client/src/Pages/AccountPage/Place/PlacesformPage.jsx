@@ -74,11 +74,10 @@ useEffect(()=>{
   
         //add new place function
   
-     async function addnewPlace(e){
-          e.preventDefault()
-          
-     await axios.post('/places', {
-              title,
+     async function savePlace(e){
+          e.preventDefault();
+          const placeDate = {
+            title,
               address,
               addedPhotos,
               description,
@@ -87,8 +86,20 @@ useEffect(()=>{
               checkIn,
               checkOut,
               maxGuest
+          }
+          if(id){
+            await axios.put('/places', {
+              id,
+              ...placeDate
           });
           setRedirect(true)
+          }else{
+            await axios.post('/places', placeDate);
+          setRedirect(true)
+          }
+
+          
+  
          
         }
    
@@ -105,7 +116,7 @@ useEffect(()=>{
   return (
     <div>
         <AccountNav/>
-    <form onSubmit={addnewPlace}>
+    <form onSubmit={savePlace}>
       {preInp('Title' ,'Title for Your place should be short and catchy as in add' )}
         <input type="text" value={title} onChange={ev => setTitle(ev.target.value)} placeholder='Title: For Example:- My Lovely Apartment ' />
 
