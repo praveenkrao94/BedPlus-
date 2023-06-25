@@ -28,6 +28,7 @@ function App() {
         <Route  path='/account' element={<ProfilePage/>} />
         <Route  path='/account/places' element={<Place/>} />
         <Route  path='/account/places/new' element={<PlacesformPage/>} />
+        <Route  path='/account/places/:id' element={<PlacesformPage/>} />
        
 
       </Route>

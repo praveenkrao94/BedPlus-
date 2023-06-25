@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AccountNav from '../AccountNav'
 import Uploader from './Uploader'
 import Perks from './Perks'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 function PlacesformPage() {
-
+  const {id} = useParams()
     const [title,setTitle] = useState('')
     const [address,setAddress] = useState('')
     const [addedPhotos,setAddedPhotos] = useState([])
@@ -21,6 +21,30 @@ function PlacesformPage() {
 
     
     
+
+useEffect(()=>{
+
+  if(!id){
+    return;
+  }
+  axios.get('/places/'+ id)
+.then(res => {
+  const{data} = res
+  setTitle(data.title)
+  setAddress(data.address)
+  setAddedPhotos(data.photos)
+  setDescription(data.description)
+  setPerks(data.perks)
+  setExtraInfo(data.extraInfo)
+  setCheckIn(data.checkIn)
+  setCheckOut(data.checkOut)
+  setMaxGuest(data.maxGuest)
+})
+
+
+},[id])
+
+
     /// to reduce the h1 and p tags -----------------------------------------/
 
     function inputHeader(text){
