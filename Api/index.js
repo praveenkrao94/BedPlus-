@@ -227,7 +227,9 @@ res.json(PlaceDoc)
 })
 
 
-app.get('/places' , (req,res)=>{
+// for all place
+
+app.get('/user-places' , (req,res)=>{
   const{token} = req.cookies
   jwt.verify(token,jwtSecret,{},async (err,userData)=>{
     const{id}= userData;
@@ -235,7 +237,7 @@ app.get('/places' , (req,res)=>{
   })
 })
 
-
+// for single place
 
 app.get('/places/:id' , async (req,res)=>{
   const {id} = req.params
@@ -243,9 +245,9 @@ app.get('/places/:id' , async (req,res)=>{
  
 })
 
+
+
 //  update the place
-
-
 
 app.put('/places' ,async (req,res)=>{
   const{token} = req.cookies
