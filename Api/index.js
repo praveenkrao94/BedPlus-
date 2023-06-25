@@ -205,7 +205,7 @@ app.post('/places' , async (req,res)=>{
     perks,
     extraInfo,
     checkIn,
-    checkOut,
+    checkOut,price,
     maxGuest} = req.body
   jwt.verify(token,jwtSecret,{},async (err,userData)=>{
 if(err) throw err;
@@ -219,7 +219,7 @@ const PlaceDoc=  await Place.create({
     extraInfo,
     checkIn,
     checkOut,
-    maxGuest
+    maxGuest,price
 })
 res.json(PlaceDoc)
   })
@@ -261,6 +261,7 @@ app.put('/places' ,async (req,res)=>{
     extraInfo,
     checkIn,
     checkOut,
+    price,
     maxGuest} = req.body
    
     jwt.verify(token,jwtSecret,{},async (err,userData)=>{
@@ -277,7 +278,8 @@ app.put('/places' ,async (req,res)=>{
     extraInfo,
     checkIn,
     checkOut,
-    maxGuest
+    maxGuest,
+    price,
 
           })
       await placeDoc.save()
@@ -287,6 +289,12 @@ app.put('/places' ,async (req,res)=>{
 
 })
 
+//  to call all the places to main 
+
+
+app.get('/places' ,async  (req,res)=>{
+  res.json(await Place.find())
+})
 
 
 app.listen(4000, () => {

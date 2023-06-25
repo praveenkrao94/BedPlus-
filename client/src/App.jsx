@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './App.css'
 import { Routes , Route } from 'react-router-dom'
-import IndexPage from './Pages/IndexPage'
+import IndexPage from './Pages/IndexHomePage/IndexPage'
 
 import LoginPage from './Pages/Loginpage/Login'
 import Layout from './Layout/Layout'
