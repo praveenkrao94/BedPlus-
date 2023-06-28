@@ -29,7 +29,7 @@ function BookingsPage() {
         </div>
         <div className='py-3'>
           <h2 className='text-xl'>{booking.place.title}</h2>
-       <BookingDates booking= {booking}/>
+       <BookingDates booking = {booking}/>
         </div>
        
       </Link>
