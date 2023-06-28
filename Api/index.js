@@ -10,6 +10,8 @@ const jwt = require('jsonwebtoken')
 
 require('dotenv').config()
 
+const PORT = process.env.PORT  || 4000
+
 const User= require('./models/User')  //  user model 
 
 const Place = require('./models/Place')  // place model
@@ -338,7 +340,7 @@ res.json( await Booking.find({user:userData.id}) .populate('place'))
 })
 
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   
   console.log('Server s running on port 4000');
 });
