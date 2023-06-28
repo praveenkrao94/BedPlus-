@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 function Register() {
@@ -7,6 +7,7 @@ function Register() {
   const[email,setEmail] = useState('')
   const[password,setPassword] = useState('')
 
+    const navigate = useNavigate()
  async function resgsiterUser(e){
     e.preventDefault()
     try{
@@ -16,6 +17,8 @@ function Register() {
          password
        });
        alert('Registration successfull . Now You can Login')
+       navigate('/login')
+       
     }
     catch (err) {
       alert('Registration Failed. Please Try Again Later')

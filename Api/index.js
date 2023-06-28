@@ -14,6 +14,8 @@ const User= require('./models/User')  //  user model
 
 const Place = require('./models/Place')  // place model
 
+const Booking = require('./models/Booking') // booking model
+
 const bcrypt = require('bcryptjs')
 
 const imageDownloader = require('image-downloader')          // image downloader
@@ -294,6 +296,45 @@ app.put('/places' ,async (req,res)=>{
 
 app.get('/places' ,async  (req,res)=>{
   res.json(await Place.find())
+})
+
+
+// booking page //
+
+app.post('/bookings', async (req,res)=>{
+  const userData = await getUserDataFromReq(req)
+  const{place,checkIn,checkOut,numbeOfGuests,name,mobile,price}= req.body
+  Booking.create({
+    place,checkIn,checkOut,numbeOfGuests,name,mobile,price,user:userData.id
+  }).then((doc)=>{
+   
+    res.json(doc)
+  }).catch(err =>{
+    console.log('error in booking ', err)
+  })
+
+});
+
+
+
+
+//  to get user data
+
+
+
+function getUserDataFromReq(req){
+  return new Promise((resolve,reject)=>{
+    jwt.verify(req.cookies.token,jwtSecret,{},async (err,userData)=>{
+      if(err) throw err
+     resolve(userData)
+    })
+  })
+
+}
+
+app.get('/bookings' , async (req,res)=>{
+const userData=  await getUserDataFromReq(req);
+res.json( await Booking.find({user:userData.id}) .populate('place'))  
 })
 
 
