@@ -102,22 +102,31 @@ app.post('/login' ,async(req,res)=>{
 
 //profile
 
+// profile
 app.get('/profile', (req, res) => {
-  const { token } = req.cookies;  //reterive token from cookies
+  const { token } = req.cookies; // Retrieve token from cookies
   if (token) {
-    jwt.verify(token, jwtSecret, {}, async (err, userdata) => {
-      if (err) 
-      return res.json({err:"invalid"})
+    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+      if (err) {
+        // Handle JWT verification errors
+        if (err.name === 'JsonWebTokenError') {
+          return res.json({ error: 'Invalid token' });
+        } else if (err.name === 'TokenExpiredError') {
+          return res.json({ error: 'Token expired' });
+        } else {
+          return res.json({ error: 'Token verification failed' });
+        }
+      }
 
-      const {name,email,_id} = await User.findById(userdata.id)
-     
-        res.json({name,email,_id})
-    
-        
-      
+      try {
+        const { name, email, _id } = await User.findById(userData.id);
+        res.json({ name, email, _id });
+      } catch (err) {
+        res.json({ error: 'Failed to fetch user data' });
+      }
     });
-  }else{
-    res.json(null)
+  } else {
+    res.json({ error: 'Token not provided' });
   }
 });
 
