@@ -1,6 +1,9 @@
 # BedPlus-
 A Mern Stack based Property Owner Management Site
 
+email:- Demo@example.com
+pass:  test123
+
 for APi to run (Server)
  :-  nodemon index.js
 
@@ -10,5 +13,4 @@ for client to run use
 
 Please use the Below Login Credentials :
 
-email:- Demo@example.com
-pass:  test123
+
