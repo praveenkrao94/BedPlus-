@@ -1,7 +1,7 @@
 # BedPlus-
 A Mern Stack based Property Owner Management Site
 
-email:- Demo@example.com
+Email:- Demo@example.com
 pass:  test123
 
 for APi to run (Server)
