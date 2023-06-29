@@ -6,3 +6,9 @@ for APi to run (Server)
 
 for client to run use 
 :-  yarn run dev
+
+
+Please use the Below Login Credentials :
+
+email:- Demo@example.com
+pass:  test123
