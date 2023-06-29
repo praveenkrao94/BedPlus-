@@ -1,6 +1,8 @@
 # BedPlus-
 A Mern Stack based Property Owner Management Site
 
+Please use the Below Login Credentials :
+
 Email:- Demo@example.com
 pass:  test123
 
@@ -11,6 +13,6 @@ for client to run use
 :-  yarn run dev
 
 
-Please use the Below Login Credentials :
+
 
 
