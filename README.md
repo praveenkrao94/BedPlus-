@@ -7,7 +7,10 @@
 
 
 
-https://github.com/praveenkrao94/praveenkrao94/assets/126244668/031b7970-824b-4b61-8c39-0d65c2dc654e
+
+https://github.com/praveenkrao94/praveenkrao94/assets/126244668/289f8727-c943-4880-862c-c424bf0d944f
+
+
 
 
 
@@ -39,8 +42,8 @@ https://github.com/praveenkrao94/praveenkrao94/assets/126244668/031b7970-824b-4b
 
 Please use the Below Login Credentials :
 
-Email:- Demo@example.com
-password:  test123
+Email:- Demo@example.com  </br>
+Password:  test123
 
 <p align="left">
 </p>
